@@ -33,7 +33,7 @@ const MiniExpress = () => {
                 }
             });
             server.listen(port, () => {
-                console.log("Application is started")
+                console.log(`Application is started and linstening on port: ${port}`);
             });
         };
 
