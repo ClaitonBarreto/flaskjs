@@ -1,6 +1,6 @@
 {
   "name": "mini-expressjs",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "main": "src/index.js",
   "repository": "https://github.com/ClaitonBarreto/mini-expressjs.git",
   "author": "claitonbarreto <claitonbarreto@gmail.com>",
@@ -18,5 +18,14 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "keywords": [
+    "express",
+    "mini-expressjs",
+    "mini-express",
+    "nodejs",
+    "node",
+    "expressjs",
+    "node-server"
+  ]
 }
