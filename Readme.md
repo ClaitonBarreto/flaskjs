@@ -1,8 +1,7 @@
 # Mini Express
-
-## :construction: In Construction :construction: 
-
 ## A simple study project that create a Mini Framework for NodeJS
+
+### :construction: In Construction :construction: 
 
 ### To use the framework, runs:
 
