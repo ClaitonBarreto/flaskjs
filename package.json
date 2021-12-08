@@ -6,7 +6,8 @@
   "author": "claitonbarreto <claitonbarreto@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "test": "echo basic tests"
   },
   "devDependencies": {
     "commitizen": "^4.2.4",
