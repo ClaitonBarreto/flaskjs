@@ -17,5 +17,14 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "keywords": [
+    "express",
+    "mini-expressjs",
+    "mini-express",
+    "nodejs",
+    "node",
+    "expressjs",
+    "node-server"
+  ]
 }
