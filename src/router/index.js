@@ -5,6 +5,7 @@ class Router {
     app = {}
     routes = []
     groups = []
+    basePath = ""
 
     initializePath = (app, path) => {
         if(app[path] === undefined) {
@@ -13,43 +14,25 @@ class Router {
     }
     
     get = (path, handler) => {
-        this.routes.push({
-            method: 'GET',
-            path: path,
-            handler: handler
-        });
+        this.setupRoute(path, handler, "GET");
     }
 
     post = (path, handler) => {
-        this.routes.push({
-            method: 'POST',
-            path: path,
-            handler: handler
-        });
+        this.setupRoute(path, handler, "POST");
     }
 
     put = (path, handler) => {
-        this.routes.push({
-            method: 'PUT',
-            path: path,
-            handler: handler
-        });
+        this.setupRoute(path, handler, "PUT");
     }
 
     del = (path, handler) => {
-        this.routes.push({
-            method: 'DELETE',
-            path: path,
-            handler: handler
-        });
+        this.setupRoute(path, handler, "DELETE");
     }
 
-    group = (path) => {
-        this.groups.push({
-            path: path,
-        });
-        
-        return {...this, ...this.groups.find(group => group.path === path)}
+    group = (path, handler) => {
+        this.groups.push(path);
+        this.basePath = path;
+        handler(this)
     }
 
     start = (app, options) => {
@@ -61,6 +44,21 @@ class Router {
         }
 
         return withRoutesApp;
+    }
+
+    setupRoute = (path, handler, method) => {
+        if(this.basePath) {
+            if(path === "/")
+                path = this.basePath;
+            else
+                path = this.basePath + path;
+        }
+
+        this.routes.push({
+            method,
+            path,
+            handler
+        });
     }
 
     createRoutes = (app) => {
