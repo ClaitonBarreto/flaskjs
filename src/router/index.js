@@ -13,20 +13,20 @@ class Router {
         }
     }
     
-    get = (path, handler) => {
-        this.setupRoute(path, handler, "GET");
+    get = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "GET");
     }
 
-    post = (path, handler) => {
-        this.setupRoute(path, handler, "POST");
+    post = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "POST");
     }
 
-    put = (path, handler) => {
-        this.setupRoute(path, handler, "PUT");
+    put = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "PUT");
     }
 
-    del = (path, handler) => {
-        this.setupRoute(path, handler, "DELETE");
+    del = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "DELETE");
     }
 
     group = (path, handler) => {
@@ -46,7 +46,7 @@ class Router {
         return withRoutesApp;
     }
 
-    setupRoute = (path, handler, method) => {
+    setupRoute = (path, middleware, handler, method) => {
         if(this.basePath) {
             if(path === "/")
                 path = this.basePath;
@@ -57,14 +57,18 @@ class Router {
         this.routes.push({
             method,
             path,
-            handler
+            handler,
+            middleware
         });
     }
 
     createRoutes = (app) => {
-        this.routes.forEach(({method, path, handler}) => {
+        this.routes.forEach(({method, path, handler, middleware}) => {
             this.initializePath(app, path);
             app[path][method] = handler;
+            if(middleware) {
+                app[path][method]['middleware'] = middleware;
+            }
         })
         return app
     }
