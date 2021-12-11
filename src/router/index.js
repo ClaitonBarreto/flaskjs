@@ -5,6 +5,7 @@ class Router {
     app = {}
     routes = []
     groups = []
+    basePath = ""
 
     initializePath = (app, path) => {
         if(app[path] === undefined) {
@@ -12,44 +13,26 @@ class Router {
         }
     }
     
-    get = (path, handler) => {
-        this.routes.push({
-            method: 'GET',
-            path: path,
-            handler: handler
-        });
+    get = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "GET");
     }
 
-    post = (path, handler) => {
-        this.routes.push({
-            method: 'POST',
-            path: path,
-            handler: handler
-        });
+    post = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "POST");
     }
 
-    put = (path, handler) => {
-        this.routes.push({
-            method: 'PUT',
-            path: path,
-            handler: handler
-        });
+    put = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "PUT");
     }
 
-    del = (path, handler) => {
-        this.routes.push({
-            method: 'DELETE',
-            path: path,
-            handler: handler
-        });
+    del = (path, middleware, handler) => {
+        this.setupRoute(path, middleware, handler, "DELETE");
     }
 
-    group = (path) => {
-        this.groups.push({
-            path: path,
-        });
-        
-        return {...this, ...this.groups.find(group => group.path === path)}
+    group = (path, handler) => {
+        this.groups.push(path);
+        this.basePath = path;
+        handler(this)
     }
 
     start = (app, options) => {
@@ -63,10 +46,29 @@ class Router {
         return withRoutesApp;
     }
 
+    setupRoute = (path, middleware, handler, method) => {
+        if(this.basePath) {
+            if(path === "/")
+                path = this.basePath;
+            else
+                path = this.basePath + path;
+        }
+
+        this.routes.push({
+            method,
+            path,
+            handler,
+            middleware
+        });
+    }
+
     createRoutes = (app) => {
-        this.routes.forEach(({method, path, handler}) => {
+        this.routes.forEach(({method, path, handler, middleware}) => {
             this.initializePath(app, path);
             app[path][method] = handler;
+            if(middleware) {
+                app[path][method]['middleware'] = middleware;
+            }
         })
         return app
     }
