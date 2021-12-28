@@ -1,4 +1,4 @@
-const MiniExpress = require('../index')();
+const MiniExpress = require('../src/index')();
 
 describe('App Tests', () => {
 
