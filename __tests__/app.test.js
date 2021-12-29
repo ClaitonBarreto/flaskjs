@@ -1,4 +1,9 @@
 const MiniExpress = require('../src/index')();
+const http = require('http');
+
+jest.mock('http', () => ({
+    createServer: jest.fn(() => ({ listen: jest.fn() })),
+}));
 
 describe('App Tests', () => {
 
@@ -12,20 +17,13 @@ describe('App Tests', () => {
         expect(app.Router).toBeDefined();
     })
 
-    it('should create a app instance with declared route', () => {
+    it('should create a app instance and start a server', async () => {
         
         const app = MiniExpress.createApp();
-        const router = new MiniExpress.Router();
 
-        router.get('/', (req, res) => {
-            res.json({
-                message: 'Hello World'
-            })
-        })
-
-        app.use(router);
         app.listen(3000);
-        expect(app).toBeDefined();
+
+        expect(http.createServer).toBeCalled();
     })
 
     it('should create a app instance with declared route and middleware', () => {

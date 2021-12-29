@@ -28,5 +28,6 @@
     "node",
     "expressjs",
     "node-server"
-  ]
+  ],
+  "dependencies": {}
 }
