@@ -22,6 +22,8 @@ const MiniExpress = () => {
 
                 if (handler) {
                     res.json = ResponseMethods.sendJson.bind(null, res);
+                    res.status = ResponseMethods.setStatusCode.bind(null, res);
+
                     req.on("data", (data) => {
                         req.body = JSON.parse(data);
                     })
