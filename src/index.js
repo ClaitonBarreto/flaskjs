@@ -18,7 +18,7 @@ const MiniExpress = () => {
 
                 const {routeParams, route} = UrlParser.parseRouteParams(appRoutes, req.url)
                 const handler = app[route] ? app[route][req.method] : null;
-                const middleware = handler.middleware
+                const middleware = handler ? handler.middleware : [];
 
                 if (handler) {
                     res.json = ResponseMethods.sendJson.bind(null, res);
