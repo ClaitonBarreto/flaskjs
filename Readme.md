@@ -87,3 +87,40 @@ router.get('/', (req,res,next) => {
 })
 ```
 
+<br>
+
+## Status code
+
+We need to change the status code in the response a lot, for this, we use the ```status``` method, like this:
+
+```javascript
+
+    router.get('/protected-route', (req, res) => {
+        if('user is not authorized') {
+            res.status(401)
+                .json({
+                    message: 'Unauthorized'
+                })
+        }
+    })
+
+```
+That's return a 401 status code in response header <br>
+
+The framework provides a Http Status Code Helper Object:
+
+```javascript
+
+const HttpStatusCode = require('mini-express/src/utils/status-codes')
+
+router.get('/protected-route', (req, res) => {
+        if('user is not authorized') {
+            res.status(HttpStatusCode.UNAUTHORIZED)
+                .json({
+                    message: 'Unauthorized'
+                })
+        }
+    })
+
+```
+
