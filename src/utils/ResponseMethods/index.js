@@ -1,10 +1,16 @@
 class ResponseMethods {
 
     sendJson = (res, data) => {
-        res.writeHead(200, {
+        const statusCode = res.statusCode || 200;
+        res.writeHead(statusCode, {
             'Content-Type': 'application/json'
-        });
-        res.end(JSON.stringify(data));  
+        })
+        .end(JSON.stringify(data));  
+    }
+
+    setStatusCode = (res, statusCode) => {
+        res.writeHead(statusCode)
+        return res
     }
 }
 

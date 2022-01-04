@@ -7,12 +7,13 @@
   "license": "MIT",
   "scripts": {
     "commit": "git-cz",
-    "test": "echo basic tests"
+    "test": "jest"
   },
   "devDependencies": {
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "husky": "^7.0.4"
+    "husky": "^7.0.4",
+    "jest": "^27.4.5"
   },
   "config": {
     "commitizen": {
@@ -27,5 +28,6 @@
     "node",
     "expressjs",
     "node-server"
-  ]
+  ],
+  "dependencies": {}
 }

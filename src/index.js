@@ -13,19 +13,32 @@ const MiniExpress = () => {
         app.listen = (port) => {
             const server = http.createServer((req, res) => {
 
-
+                let queryParams = {}
                 const appRoutes = Object.keys(app).filter(key => key.includes("/"));
 
+                if(req.url.includes('?')) {
+                    queryParams = UrlParser.parseQueryParams(req.url);
+                    req.url = req.url.split('?')[0];
+                }
+
                 const {routeParams, route} = UrlParser.parseRouteParams(appRoutes, req.url)
+                
+
                 const handler = app[route] ? app[route][req.method] : null;
-                const middleware = handler.middleware
+                const middleware = handler ? handler.middleware : [];
 
                 if (handler) {
                     res.json = ResponseMethods.sendJson.bind(null, res);
+                    res.status = ResponseMethods.setStatusCode.bind(null, res);
+
                     req.on("data", (data) => {
                         req.body = JSON.parse(data);
                     })
                     .on("end", () => {
+
+                        if(queryParams)
+                            req.query = queryParams;
+
                         if(routeParams)
                             req.params = routeParams;
 

@@ -64,11 +64,19 @@ class Router {
 
     createRoutes = (app) => {
         this.routes.forEach(({method, path, handler, middleware}) => {
+
             this.initializePath(app, path);
             app[path][method] = handler;
+
+            if(!handler) {
+                app[path][method] = middleware;
+                return
+            }
+
             if(middleware) {
                 app[path][method]['middleware'] = middleware;
             }
+
         })
         return app
     }

@@ -36,6 +36,16 @@ class UrlParser {
         }
         return {routeParams, route};
     }
+
+    parseQueryParams = (url) => {
+        const queryParams = {};
+        const splitedUrl = url.split('?')[1].split('&');
+        splitedUrl.forEach(item => {
+            const splitedItem = item.split('=');
+            queryParams[splitedItem[0]] = splitedItem[1];
+        })
+        return queryParams;
+    }
 }
 
 module.exports = new UrlParser();
