@@ -1,4 +1,4 @@
-# Mini Express
+# Flask JS
 ## A simple study project that create a Mini Framework for NodeJS
 
 ### :construction: In Construction :construction: 
@@ -6,22 +6,22 @@
 ### To use the framework, runs:
 
 ```
-npm install mini-expressjs
+npm install flaskjs
 ```
 or
 ```
-yarn add mini-expressjs
+yarn add flaskjs
 ```
 <br><br>
 ## Basic usage
 
 ```javascript
 
-const MiniExpress = require('mini-expressjs')()
+const Flask = require('flaskjs')()
 
-const App = MiniExpress.createApp()
+const App = Flask.createApp()
 
-const Router = new MiniExpress.Router()
+const Router = new Flask.Router()
 
 Router.get('/', (request, response) => {
     response.end('Server is on')
@@ -50,11 +50,11 @@ That's enough to map routes from app and show it in your console.
 
 ```javascript
 
-const MiniExpress = require('mini-expressjs')()
+const Flask = require('flaskjs')()
 
-const App = MiniExpress.createApp()
+const App = Flask.createApp()
 
-const Router = new MiniExpress.Router()
+const Router = new Flask.Router()
 
 Router.group('/users', (router) => {
     router.get('/', (req, res) => {
@@ -111,7 +111,7 @@ The framework provides a Http Status Code Helper Object:
 
 ```javascript
 
-const HttpStatusCode = require('mini-express/src/utils/status-codes')
+const HttpStatusCode = require('flaskjs/src/utils/status-codes')
 
 router.get('/protected-route', (req, res) => {
         if('user is not authorized') {

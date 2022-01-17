@@ -3,7 +3,7 @@ const Router = require('./router');
 const UrlParser = require('./utils/UrlParser');
 const ResponseMethods = require('./utils/ResponseMethods');
 
-const MiniExpress = () => {
+const Flask = () => {
     
     const createApp = () => {
         let app = {}
@@ -70,4 +70,4 @@ const MiniExpress = () => {
     }
 }
 
-module.exports = MiniExpress;
+module.exports = Flask;

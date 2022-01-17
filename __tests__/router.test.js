@@ -1,10 +1,10 @@
-const MiniExpress = require('../src/index')();
+const Flask = require('../src/index')();
 
 describe('Router Tests', () => {
     
     it('should create a router instance', () => {
     
-        const router = new MiniExpress.Router();
+        const router = new Flask.Router();
     
         expect(router).toBeDefined();
         expect(router.get).toBeDefined();
@@ -16,7 +16,7 @@ describe('Router Tests', () => {
 
     it('should create a router instance with declared route', () => {
         
-        const router = new MiniExpress.Router();
+        const router = new Flask.Router();
         
         router.get('/', () => {})
 
@@ -27,7 +27,7 @@ describe('Router Tests', () => {
 
     it('should create a router instance with multiple routes', () => {
             
-        const router = new MiniExpress.Router();
+        const router = new Flask.Router();
         
         router.get('/', () => {})
         router.get('/test', () => {})
@@ -41,7 +41,7 @@ describe('Router Tests', () => {
 
     it('should create a router instance with all http methods', () => {
                 
-        const router = new MiniExpress.Router();
+        const router = new Flask.Router();
         
         router.get('/', () => {})
         router.post('/', () => {})
@@ -61,7 +61,7 @@ describe('Router Tests', () => {
 
     it('should create a router instance with a group route', () => {
                     
-            const router = new MiniExpress.Router();
+            const router = new Flask.Router();
             
             router.group('/', () => {
                 router.get('/', () => {})
@@ -74,7 +74,7 @@ describe('Router Tests', () => {
 
     it('setup route', () => {
             
-        const router = new MiniExpress.Router();
+        const router = new Flask.Router();
         const handler = () => {};
         const middleware = () => {};
         const path = '/';
@@ -91,7 +91,7 @@ describe('Router Tests', () => {
 
     it('should not find a undeclared route', () => {
             
-            const router = new MiniExpress.Router();
+            const router = new Flask.Router();
             
             router.get('/', () => {})
     
@@ -100,7 +100,7 @@ describe('Router Tests', () => {
 
     it('should find a declared route', () => {
             
-        const router = new MiniExpress.Router();
+        const router = new Flask.Router();
         
         router.get('/user', () => {})
 

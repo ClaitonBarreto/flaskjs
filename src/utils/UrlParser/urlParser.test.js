@@ -1,12 +1,12 @@
-const MiniExpress = require('../../index')();
+const Flask = require('../../index')();
 const UrlParser = require('./index');
 
 describe('Url Parser Tests', () => {
 
     it('should parse route params', () => {
 
-        const app = MiniExpress.createApp();
-        const router = new MiniExpress.Router();
+        const app = Flask.createApp();
+        const router = new Flask.Router();
 
         router.get('/:id', (req, res) => {
             res.json({
