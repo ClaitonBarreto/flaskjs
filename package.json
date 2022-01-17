@@ -1,5 +1,5 @@
 {
-  "name": "flaskjs",
+  "name": "flask-js",
   "version": "0.4.0",
   "main": "src/index.js",
   "repository": "https://github.com/ClaitonBarreto/flaskjs.git",
