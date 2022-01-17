@@ -1,8 +1,8 @@
 {
-  "name": "mini-expressjs",
+  "name": "flaskjs",
   "version": "0.3.1",
   "main": "src/index.js",
-  "repository": "https://github.com/ClaitonBarreto/mini-expressjs.git",
+  "repository": "https://github.com/ClaitonBarreto/flaskjs.git",
   "author": "claitonbarreto <claitonbarreto@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -27,7 +27,9 @@
     "nodejs",
     "node",
     "expressjs",
-    "node-server"
+    "node-server",
+    "node-mini-server",
+    "flaskjs"
   ],
   "dependencies": {}
 }

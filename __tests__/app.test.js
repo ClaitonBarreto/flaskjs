@@ -1,4 +1,4 @@
-const MiniExpress = require('../src/index')();
+const Flask = require('../src/index')();
 const http = require('http');
 
 jest.mock('http', () => ({
@@ -9,7 +9,7 @@ describe('App Tests', () => {
 
     it('should create a app instance', () => {
     
-        const app = MiniExpress.createApp();
+        const app = Flask.createApp();
     
         expect(app).toBeDefined();
         expect(app.use).toBeDefined();
@@ -19,7 +19,7 @@ describe('App Tests', () => {
 
     it('should create a app instance and start a server', async () => {
         
-        const app = MiniExpress.createApp();
+        const app = Flask.createApp();
 
         app.listen(3000);
 
@@ -28,8 +28,8 @@ describe('App Tests', () => {
 
     it('should create a app instance with declared route and middleware', () => {
             
-        const app = MiniExpress.createApp();
-        const router = new MiniExpress.Router();
+        const app = Flask.createApp();
+        const router = new Flask.Router();
 
         router.get('/', (req,res,next) => {
             return next();
